@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TicketController {
@@ -25,5 +22,11 @@ public class TicketController {
     public ResponseEntity<Ticket> addTicket(@RequestBody Ticket ticket){
         Ticket addedTicket = ticketService.addTicket(ticket);
         return new ResponseEntity<Ticket>(addedTicket,HttpStatus.CREATED);
+    }
+
+    @GetMapping("viewTicket/{id}")
+    public ResponseEntity<Ticket> getTicketById(@PathVariable int id){
+        Ticket viewTicket = ticketService.getTicketById(id);
+        return new ResponseEntity<Ticket>(viewTicket,HttpStatus.OK);
     }
 }
