@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class TicketService {
     @Autowired
     private TicketRepo ticketRepo;
-    public Ticket addTicket(Ticket request) {
+    public Ticket risedTicket(Ticket request) {
         Ticket ticket = new Ticket();
         ticket.setTitle(request.getTitle());
         ticket.setDescription(request.getDescription());
@@ -24,6 +24,10 @@ public class TicketService {
     public Ticket getTicketById(int id) {
         return ticketRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ticket not found with id: "+id));
+    }
+
+    public void deleteTicketById(int id) {
+        ticketRepo.deleteById(id);
     }
 }
 

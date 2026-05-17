@@ -18,10 +18,10 @@ public class TicketController {
         return "Welcome to Ticketing System";
     }
 
-    @PostMapping("addTicket")
-    public ResponseEntity<Ticket> addTicket(@RequestBody Ticket ticket){
-        Ticket addedTicket = ticketService.addTicket(ticket);
-        return new ResponseEntity<Ticket>(addedTicket,HttpStatus.CREATED);
+    @PostMapping("riseTicket")
+    public ResponseEntity<Ticket> riseTicket(@RequestBody Ticket ticket){
+        Ticket risedTicket = ticketService.risedTicket(ticket);
+        return new ResponseEntity<Ticket>(risedTicket,HttpStatus.CREATED);
     }
 
     @GetMapping("viewTicket/{id}")
@@ -29,4 +29,11 @@ public class TicketController {
         Ticket viewTicket = ticketService.getTicketById(id);
         return new ResponseEntity<Ticket>(viewTicket,HttpStatus.OK);
     }
+
+    @DeleteMapping("deleteTicket/{id}")
+    public ResponseEntity<String> deleteTicketById(@PathVariable int id){
+        ticketService.deleteTicketById(id);
+        return new ResponseEntity<>("Deleted",HttpStatus.OK);
+    }
+
 }
